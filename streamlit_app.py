@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 from agent.workflow import support_app  # ✅ Import your graph here
 #from dotenv import load_dotenv
@@ -6,7 +8,11 @@ from agent.workflow import support_app  # ✅ Import your graph here
 #load_dotenv()
 
 # Access OpenAI API key
-api_key = st.secrets["OPENAI_API_KEY"]
+# Try Streamlit Secrets first, fallback to env vars
+api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+
+if not api_key:
+    st.warning("⚠️ OpenAI API key not found in Streamlit secrets or environment variables.")
 
 st.title("🧠 AI Customer Support Agent")
 
