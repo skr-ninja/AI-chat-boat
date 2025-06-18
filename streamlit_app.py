@@ -1,9 +1,12 @@
 import streamlit as st
 from agent.workflow import support_app  # ✅ Import your graph here
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+#load_dotenv()
+
+# Access OpenAI API key
+api_key = st.secrets["OPENAI_API_KEY"]
 
 st.title("🧠 AI Customer Support Agent")
 
